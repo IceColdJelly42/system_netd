@@ -223,38 +223,7 @@ void SoftapController::generatePsk(char *ssid, char *passphrase, char *psk_str) 
  */
 int SoftapController::fwReloadSoftap(int argc, char *argv[])
 {
-    int ret, i = 0;
-    char *iface;
-    char *fwpath;
-
-    if (mSock < 0) {
-        ALOGE("Softap fwrealod - failed to open socket");
-        return -1;
-    }
-    if (argc < 4) {
-        ALOGE("Softap fwreload - missing arguments");
-        return -1;
-    }
-
-    iface = argv[2];
-
-    if (strcmp(argv[3], "AP") == 0) {
-        fwpath = (char *)wifi_get_fw_path(WIFI_GET_FW_PATH_AP);
-    } else if (strcmp(argv[3], "P2P") == 0) {
-        fwpath = (char *)wifi_get_fw_path(WIFI_GET_FW_PATH_P2P);
-    } else {
-        fwpath = (char *)wifi_get_fw_path(WIFI_GET_FW_PATH_STA);
-    }
-    if (!fwpath)
-        return -1;
-    ret = wifi_change_fw_path((const char *)fwpath);
-    if (ret) {
-        ALOGE("Softap fwReload - failed: %d", ret);
-    }
-    else {
-        ALOGD("Softap fwReload - Ok");
-    }
-    return ret;
+    return 0;
 }
 
 int SoftapController::clientsSoftap(char **retbuf)
